@@ -34,12 +34,77 @@ accountInfo(accountHolder, accountNumber, businessName)
 // Add function to print account information 
 function showAddresses(arrayAddresses) {
 	console.log(`Addresses: `);
-	for(let address of addresses) {
+	for(let address of arrayAddresses) {
 		console.log(address);
 	}
 }
 
 showAddresses(addresses)
+
+function showPhoneNums(mapPhone){
+	console.log(`Phone Numbers:`);
+	for(let phone of mapPhone){
+		console.log(`${phone[0]} : ${phone[1]}`);
+	}
+}
+
+showPhoneNums(phoneNumbers);
+
+
+// const transaction = new Map([
+// 	['May-2', -500],
+// 	['May-13', +1200],
+// 	['May-15', -100],
+// 	['May-21', -359],
+// 	['May-29', 2200]
+// 	]);
+const transactions = new Map([
+	]);
+
+function addTransaction(date, amount){
+	transactions.set(date,amount);
+}
+
+addTransaction('May-2', -500)
+
+addTransaction('May-13', +1200)
+
+addTransaction('May-15', -100)
+
+addTransaction('May-21', -359)
+
+addTransaction('May-29', 2200)
+
+function showBalanceStatus(amount) {
+	console.log(`Balance: ${amount}`);
+	if (amount < 0) {
+		console.log('YOU ARE OVERDRAWN');
+	} else if (amount < 20) {
+		console.log(`Warning: You are close to zero balance`);
+	} else {
+		console.log(`Thank you for your business.`)
+	}
+}
+
+function showTransactions(mapTransactions, balance){
+	console.log(`Your starting balance is: ${balance}`);
+	for(let transaction of mapTransactions){
+		let transactionType;
+		if (transaction[1] > 0){
+			transactionType = 'deposit';
+		} else {
+			transactionType = 'withdrawal';
+		}
+		balance = balance + transaction[1]
+		console.log(`Transaction date: ${transaction[0]}`,
+			`Transaction type: ${transactionType}`,
+			`Amount changed: ${transaction[1]}`,
+			`New Balance: ${balance}`);
+	}
+}
+
+showTransactions(transactions, 2000)
+
 
 
 // Add function to print all addresses, including a header
